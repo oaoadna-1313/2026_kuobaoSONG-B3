@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【八上閱思龍門】歌SONG國文・L01 田園之秋選 好歌互動教學平台</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Noto Serif TC & Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@400;600;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Noto Serif TC"', 'serif'],
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+            kaiti: ['"DFKai-SB"', '"BiauKai"', '"KaiTi"', 'serif']
+          },
+          keyframes: {
+            spin_slow: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' }
+            },
+            pulse_soft: {
+              '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+              '50%': { opacity: 0.85, transform: 'scale(1.03)' }
+            }
+          },
+          animation: {
+            'spin-slow': 'spin_slow 18s linear infinite',
+            'pulse-soft': 'pulse_soft 2s ease-in-out infinite'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom handwriting font style for teacher answers */
+    .font-handwriting {
+      font-family: "DFKai-SB", "BiauKai", "KaiTi", "Noto Serif TC", serif;
+      letter-spacing: 0.08em;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    
+    /* Blank box styles */
+    .blank-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 4rem;
+      min-height: 1.85rem;
+      padding: 0.05rem 0.5rem;
+      margin: 0.05rem 0.2rem;
+      background-color: #ffffff;
+      border: 1.5px solid #94a3b8;
+      border-radius: 0.375rem;
+      vertical-align: middle;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    .blank-box:hover {
+      border-color: #10b981;
+      background-color: #ecfdf5;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.15);
+    }
+    .blank-box.revealed {
+      border-color: #fca5a5;
+      background-color: #fff1f2;
+      box-shadow: 0 1px 3px 0 rgba(225, 29, 72, 0.1);
+    }
+    .blank-box.revealed:hover {
+      border-color: #f87171;
+      background-color: #ffe4e6;
+    }
+    
+    /* Print optimizations */
+    @media print {
+      header, footer, .no-print {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .worksheet-card {
+        border: 2px solid #000000 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+      }
+      .blank-box {
+        border: 1.5px solid #000000 !important;
+        background: transparent !important;
+      }
+      .blank-box.revealed .revealed-text {
+        color: #dc2626 !important;
+      }
+    }
+    
+    /* Vinyl arm pivot */
+    .vinyl-arm {
+      transform-origin: 85% 15%;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .vinyl-arm.playing {
+      transform: rotate(26deg);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-emerald-100 selection:text-emerald-900">
+
+  <!-- ==================== STICKY HEADER (yuesilongmen-web-title-spec) ==================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Brand & Title (閱思龍門標準品牌標題) -->
+      <div class="flex items-center space-x-3">
+        <a href="index.html" class="flex items-center space-x-2 group" title="返回歌SONG國文教學首頁">
+          <!-- 嚴禁 rounded-full，維持原生純方形圖案 -->
+          <img src="assets/SSS_Stamp02.png" alt="閱思龍門" class="w-10 h-10 object-contain shadow-sm group-hover:rotate-6 transition-transform duration-300">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-serif font-bold text-lg sm:text-xl text-slate-900 tracking-wide">歌SONG國文</span>
+              <span class="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-900 border border-emerald-200">八上國文・L01 田園之秋選</span>
+            </div>
+            <p class="text-[11px] text-slate-500 font-medium hidden md:block">聆聽田園之音・穿梭旋律與風雨的文學想像</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <!-- Reveal All Toggle -->
+        <button id="toggleAllBtn" onclick="toggleAllBlanks()" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 shadow-xs cursor-pointer active:scale-95">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span id="toggleAllBtnText">一鍵揭曉教師版</span>
+        </button>
+        <!-- Reset Blanks -->
+        <button onclick="resetAllBlanks()" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 shadow-xs cursor-pointer active:scale-95">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span class="hidden sm:inline">重置空白</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full space-y-6">
+
+    <!-- Top Banner & Song Carousel Selector (Orange Theme) -->
+    <div class="bg-gradient-to-r from-orange-600 via-amber-600 to-stone-900 rounded-2xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
+      <!-- Background Decorative Lights -->
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-orange-400/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute right-1/3 -top-10 w-48 h-48 bg-amber-300/20 rounded-full blur-2xl pointer-events-none"></div>
+
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 relative z-10">
+        <!-- Left: Logo Banner -->
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-3 shrink-0">
+            <!-- 黃框: 國文寶典 baoden.png -->
+            <img src="assets/baoden.png" alt="國文寶典" class="h-12 sm:h-14 w-auto object-contain rounded-xl shadow-md border border-white/20">
+            <!-- 紅框: 歌SONG國文 badge-songlogo.PNG -->
+            <img src="assets/badge-songlogo.PNG" alt="歌SONG國文" class="h-9 sm:h-11 w-auto object-contain filter drop-shadow-md">
+          </div>
+          <div class="hidden sm:block border-l border-white/20 pl-4">
+            <h1 class="text-sm sm:text-base font-serif font-bold text-amber-100 tracking-wide">秋日田園與驟雨天籟的文學共鳴</h1>
+            <p class="text-xs text-orange-100/90 mt-0.5">結合陳冠學《田園之秋選》課文賞析，聆聽田園之歌、秋天的樹、西北雨與天黑黑的田園樂章，邊聽音樂邊完成歌詞填空與深度鑑賞</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Song Navigation & Worksheet Quick Action Bar -->
+      <div class="mt-5 pt-4 border-t border-white/15 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <!-- Left: Song Navigation Pills / Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none flex-1 min-w-0" id="songTabsContainer">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Right: 學用學習單 與 教用學習單 按鈕 -->
+        <div class="flex items-center gap-2 shrink-0 self-end md:self-center">
+          <button type="button" onclick="openWorksheetModal('student')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 bg-amber-500/25 hover:bg-amber-500/40 text-amber-100 border border-amber-400/50 hover:border-amber-300 shadow-sm hover:shadow active:scale-95 cursor-pointer" title="查看或下載學用學習單PDF">
+            <i class="fa-solid fa-file-pen text-amber-300 text-xs"></i>
+            <span>學用學習單</span>
+          </button>
+          <button type="button" onclick="openWorksheetModal('teacher')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 bg-rose-500/25 hover:bg-rose-500/40 text-rose-100 border border-rose-400/50 hover:border-rose-300 shadow-sm hover:shadow active:scale-95 cursor-pointer" title="查看或下載教用學習單PDF（教師版）">
+            <i class="fa-solid fa-graduation-cap text-rose-300 text-xs"></i>
+            <span>教用學習單</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Song Hero & Core Teaching Board (Grid Layout) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+      <!-- Left Column: Audio Player & Song Info Card (Sticky on desktop, 5 cols) -->
+      <div class="lg:col-span-5 space-y-5 lg:sticky lg:top-24">
+
+        <!-- ==================== PLAYER CARD ==================== -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+          <!-- Card Header & Mood Badge -->
+          <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
+            <div class="flex items-center space-x-2">
+              <span id="playerOrderBadge" class="px-2 py-0.5 text-xs font-bold rounded-md bg-emerald-100 text-emerald-900 border border-emerald-200">第一曲</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="playerTagBadge" class="px-2.5 py-0.5 text-xs font-medium rounded-full bg-amber-100 text-amber-800">田園風光・悠然自得</span>
+              <!-- MV Switch Button if video available -->
+              <button id="videoToggleBtn" onclick="toggleVideoMode()" class="hidden px-2 py-0.5 text-xs font-bold rounded-md bg-rose-600 hover:bg-rose-700 text-white transition-colors cursor-pointer flex items-center gap-1 shadow-xs" title="切換MV視頻播放">
+                <i class="fa-solid fa-video"></i>
+                <span id="videoToggleText">MV</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Player Body: Visualizer / Vinyl Record -->
+          <div class="p-6 flex flex-col items-center justify-center bg-gradient-to-b from-slate-900 to-slate-950 text-white relative overflow-hidden">
+            <!-- Background Glow -->
+            <div id="playerGlow" class="absolute w-44 h-44 bg-emerald-500/25 rounded-full blur-3xl transition-all duration-500 pointer-events-none"></div>
+
+            <!-- Video Player Container (Hidden by default) -->
+            <div id="videoContainer" class="hidden w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner mb-4 relative z-10">
+              <video id="videoPlayer" class="w-full h-full object-contain" controls>
+                您的瀏覽器不支援影片播放。
+              </video>
+            </div>
+
+            <!-- Vinyl Record Turntable Animation (Shown in audio mode) -->
+            <div id="vinylContainer" class="relative w-48 h-48 sm:w-56 sm:h-56 flex items-center justify-center my-2 select-none z-10">
+              <!-- Vinyl Disc -->
+              <div id="vinylDisc" class="w-full h-full rounded-full bg-slate-950 border-4 border-slate-800 shadow-2xl flex items-center justify-center relative overflow-hidden transition-transform duration-500">
+                <!-- Concentric Grooves -->
+                <div class="absolute inset-2 rounded-full border border-slate-800/80"></div>
+                <div class="absolute inset-5 rounded-full border border-slate-800/60"></div>
+                <div class="absolute inset-8 rounded-full border border-slate-800/40"></div>
+                <div class="absolute inset-12 rounded-full border border-slate-800/30"></div>
+                <!-- Vinyl Label (Center) -->
+                <div id="vinylLabel" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-tr from-amber-500 to-emerald-500 flex flex-col items-center justify-center text-center p-2 shadow-inner border-2 border-white/20">
+                  <i class="fa-solid fa-music text-white text-base drop-shadow"></i>
+                  <span id="vinylSongTitle" class="text-[10px] font-bold text-white tracking-tight line-clamp-1 mt-0.5">田園之歌</span>
+                </div>
+                <!-- Center Hole -->
+                <div class="absolute w-3.5 h-3.5 rounded-full bg-slate-950 border border-slate-700 shadow-inner"></div>
+              </div>
+
+              <!-- Turntable Needle Arm -->
+              <div id="vinylArm" class="vinyl-arm absolute -top-4 right-2 w-14 h-32 pointer-events-none z-20">
+                <div class="w-4 h-4 rounded-full bg-slate-400 border border-slate-300 shadow absolute top-0 right-0"></div>
+                <div class="w-1.5 h-24 bg-gradient-to-b from-slate-300 to-slate-400 shadow rounded-full absolute top-2 right-1.5 transform rotate-6"></div>
+                <div class="w-3 h-5 bg-rose-500 rounded-sm shadow absolute bottom-4 right-3.5 border border-white/20"></div>
+              </div>
+            </div>
+
+            <!-- Song Title & Artist -->
+            <div class="text-center mt-3 z-10">
+              <h2 id="playerSongTitle" class="text-xl sm:text-2xl font-serif font-black text-white tracking-wide">田園之歌</h2>
+              <p id="playerArtist" class="text-xs sm:text-sm text-emerald-200 mt-1 font-medium">演唱：費玉清・1978</p>
+            </div>
+
+            <!-- Progress Bar & Scrubber -->
+            <div class="w-full mt-5 space-y-1.5 z-10">
+              <div class="relative w-full h-2 bg-slate-800 rounded-full cursor-pointer group" id="progressBarContainer" onclick="seekAudio(event)">
+                <div id="progressBar" class="h-full bg-gradient-to-r from-emerald-500 to-amber-500 rounded-full w-0 transition-all duration-100 group-hover:brightness-110"></div>
+                <!-- Scrubber Handle -->
+                <div id="progressHandle" class="absolute top-1/2 -translate-y-1/2 -ml-1.5 w-3.5 h-3.5 bg-white rounded-full shadow-md border border-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+              </div>
+              <!-- Time Readout -->
+              <div class="flex justify-between items-center text-[11px] font-mono text-slate-400">
+                <span id="currentTime">00:00</span>
+                <span id="totalDuration">--:--</span>
+              </div>
+            </div>
+
+            <!-- Playback Control Buttons -->
+            <div class="flex items-center justify-center gap-4 mt-4 z-10">
+              <!-- Rewind 5s -->
+              <button onclick="skipTime(-5)" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-all flex items-center justify-center text-xs cursor-pointer active:scale-90" title="倒退 5 秒">
+                <i class="fa-solid fa-rotate-left"></i>
+              </button>
+              <!-- Prev Song -->
+              <button onclick="prevSong()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-all flex items-center justify-center text-xs cursor-pointer active:scale-90" title="上一首">
+                <i class="fa-solid fa-backward-step"></i>
+              </button>
+              <!-- Play / Pause Main Button -->
+              <button id="playPauseBtn" onclick="togglePlayPause()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-emerald-500 to-amber-500 hover:from-emerald-600 hover:to-amber-600 text-white shadow-lg shadow-emerald-500/30 transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center text-xl cursor-pointer" title="播放 / 暫停">
+                <i id="playIcon" class="fa-solid fa-play ml-0.5"></i>
+              </button>
+              <!-- Next Song -->
+              <button onclick="nextSong()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-all flex items-center justify-center text-xs cursor-pointer active:scale-90" title="下一首">
+                <i class="fa-solid fa-forward-step"></i>
+              </button>
+              <!-- Fast-forward 5s -->
+              <button onclick="skipTime(5)" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-all flex items-center justify-center text-xs cursor-pointer active:scale-90" title="快進 5 秒">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+            </div>
+
+            <!-- Secondary Controls: Speed & Volume -->
+            <div class="w-full flex items-center justify-between mt-5 pt-4 border-t border-slate-800/80 text-xs text-slate-400 z-10">
+              <!-- Speed Selector -->
+              <div class="flex items-center space-x-1">
+                <span class="text-[10px] text-slate-500 mr-1">語速:</span>
+                <button onclick="setSpeed(0.8)" id="speed-0.8" class="speed-btn px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer">0.8x</button>
+                <button onclick="setSpeed(1.0)" id="speed-1.0" class="speed-btn px-2 py-0.5 rounded bg-emerald-600 text-white font-bold transition-colors cursor-pointer">1.0x</button>
+                <button onclick="setSpeed(1.2)" id="speed-1.2" class="speed-btn px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer">1.2x</button>
+              </div>
+
+              <!-- Volume Slider -->
+              <div class="flex items-center space-x-2">
+                <button onclick="toggleMute()" class="text-slate-400 hover:text-white transition-colors cursor-pointer">
+                  <i id="volumeIcon" class="fa-solid fa-volume-high text-xs"></i>
+                </button>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.8" oninput="changeVolume(this.value)" class="w-16 h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Meta info -->
+          <div class="p-4 bg-slate-50 text-xs text-slate-500 flex items-center justify-between border-t border-slate-100">
+            <span id="playerSheetRef" class="flex items-center gap-1.5">
+              <i class="fa-regular fa-file-lines text-emerald-600"></i>
+              好歌學習單 第25頁
+            </span>
+            <span id="playerAlbum" class="text-slate-400 font-serif">白雲 / 鄉村情歌</span>
+          </div>
+        </div>
+
+        <!-- ==================== SONG INTRO CARD ==================== -->
+        <div id="introCard" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3 transition-all duration-300">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif font-bold text-slate-900 text-sm flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+              <span>陳冠學《田園之秋選》文學連結與歌曲賞析</span>
+            </h3>
+            <span class="text-[11px] font-bold text-emerald-700 px-2 py-0.5 rounded bg-emerald-50">名曲導讀</span>
+          </div>
+          <p id="songIntroText" class="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans text-justify">
+            <!-- Rendered by JS -->
+          </p>
+          <div class="pt-2 border-t border-slate-100 flex flex-wrap gap-y-1 text-[11px] text-slate-500">
+            <span class="w-1/2" id="metaLyricist">作詞：陸麗</span>
+            <span class="w-1/2" id="metaComposer">作曲：姚敏</span>
+            <span class="w-1/2" id="metaArtist">演唱：費玉清</span>
+            <span class="w-1/2" id="metaYear">年份：1978</span>
+          </div>
+        </div>
+
+        <!-- ==================== ALL SONGS MINI PLAYLIST ==================== -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+          <h4 class="font-serif font-bold text-xs sm:text-sm text-slate-800 mb-2.5 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-emerald-600"></i>
+              <span>全系列好歌學習地圖 (4首)</span>
+            </span>
+            <span class="text-[11px] text-emerald-700 font-semibold" id="overallCompletion">進度 0/4</span>
+          </h4>
+          <div class="space-y-1.5" id="songListMenu">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Worksheet (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- ==================== WORKSHEET CARD ==================== -->
+        <div class="worksheet-card bg-white rounded-2xl border-2 border-slate-800 shadow-lg p-5 sm:p-8 relative transition-all duration-300">
+
+          <!-- Worksheet Top Header -->
+          <div class="flex items-center justify-between border-b-2 border-slate-800 pb-4 mb-6">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-serif font-black text-xl shadow-xs">
+                <i class="fa-solid fa-folder-open text-base"></i>
+              </div>
+              <div>
+                <h2 id="sheetTitle" class="text-xl sm:text-2xl font-serif font-black text-slate-900 tracking-wide">【田園之歌】</h2>
+                <p id="sheetCredits" class="text-xs text-slate-600 mt-1">作詞：陸麗  作曲：姚敏  演唱：費玉清  1978</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lyrics Display Area -->
+          <div class="space-y-2 text-base sm:text-lg leading-normal font-serif text-slate-800 tracking-wide" id="lyricsContainer">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Worksheet Key Question & Reflection Section -->
+          <div id="reflectionSec" class="mt-8 pt-6 border-t-2 border-slate-300 space-y-5">
+
+            <!-- Single Highlighter Question Section (請問這首歌要傳達的概念或最關鍵的句子是什麼？) -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                <label class="font-serif font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+                  <i class="fa-solid fa-highlighter text-amber-500"></i>
+                  <span class="bg-amber-100/90 text-amber-950 px-2.5 py-0.5 rounded font-bold">請問這首歌要傳達的概念或最關鍵的句子是什麼？</span>
+                </label>
+                <!-- 點選切換顯示/隱藏參考解答按鈕 -->
+                <button type="button" onclick="toggleKeySentenceAnswer()" id="keyAnsToggleBtn" class="self-start sm:self-auto px-3 py-1 rounded-lg text-xs font-bold bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs active:scale-95">
+                  <i id="keyAnsIcon" class="fa-regular fa-lightbulb text-amber-600"></i>
+                  <span id="keyAnsText">查看關鍵句解答</span>
+                </button>
+              </div>
+
+              <!-- 隱藏的參考解答區（點選按鈕後展開顯示） -->
+              <div id="keySentenceAnswerBox" class="hidden p-3.5 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/90 transition-all">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500 text-white flex items-center gap-1">
+                    <i class="fa-solid fa-check"></i>
+                    <span>教用學習單螢光筆解答</span>
+                  </span>
+                </div>
+                <div id="keySentenceAnswerText" class="font-handwriting text-rose-600 font-bold text-base sm:text-lg tracking-wide leading-relaxed pl-1 whitespace-pre-line cursor-pointer hover:underline">
+                </div>
+              </div>
+            </div>
+
+            <!-- Emotion Chips -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2.5">
+              <label class="font-serif font-bold text-xs sm:text-sm text-slate-800 flex items-center gap-1.5">
+                <i class="fa-regular fa-folder text-emerald-600"></i>
+                <span>這首歌讓我覺得：</span>
+              </label>
+              <div class="flex flex-wrap gap-2 text-xs" id="emotionContainer">
+                <button onclick="toggleEmotion(this, '田園自得')" class="emotion-chip px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-emerald-50 text-slate-700 transition-all flex items-center gap-1.5 cursor-pointer">
+                  <span>🌾</span>
+                  <span>田園自得</span>
+                </button>
+                <button onclick="toggleEmotion(this, '溫馨感動')" class="emotion-chip px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-rose-50 text-slate-700 transition-all flex items-center gap-1.5 cursor-pointer">
+                  <span>💖</span>
+                  <span>溫馨感動</span>
+                </button>
+                <button onclick="toggleEmotion(this, '深受啟發')" class="emotion-chip px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-amber-50 text-slate-700 transition-all flex items-center gap-1.5 cursor-pointer">
+                  <span>💡</span>
+                  <span>深受啟發</span>
+                </button>
+                <button onclick="toggleEmotion(this, '驟雨生機')" class="emotion-chip px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-sky-50 text-slate-700 transition-all flex items-center gap-1.5 cursor-pointer">
+                  <span>☔</span>
+                  <span>驟雨生機</span>
+                </button>
+                <button onclick="toggleEmotion(this, '詼諧逗趣')" class="emotion-chip px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-indigo-50 text-slate-700 transition-all flex items-center gap-1.5 cursor-pointer">
+                  <span>👏</span>
+                  <span>詼諧逗趣</span>
+                </button>
+                <button onclick="toggleEmotion(this, '心靈安祥')" class="emotion-chip px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-teal-50 text-slate-700 transition-all flex items-center gap-1.5 cursor-pointer">
+                  <span>🕊️</span>
+                  <span>心靈安祥</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== FOOTER (yuesilongmen-web-title-spec) ==================== -->
+  <footer class="bg-slate-100 text-slate-600 py-6 border-t border-slate-200 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 text-center sm:text-left">
+          <div class="flex items-center space-x-2">
+            <!-- 嚴禁 rounded-full，維持純方形圖案 -->
+            <img src="assets/SSS_Stamp02.png" alt="國文寶典" class="w-8 h-8 object-contain shadow-xs">
+            <span class="font-serif font-bold text-slate-800 text-base">八上國文寶典・歌SONG國文</span>
+          </div>
+          <span class="hidden sm:inline text-slate-300">|</span>
+          <span class="text-xs text-slate-500 font-medium">聆聽田園之音・穿梭旋律與風雨的文學想像</span>
+        </div>
+        <div class="text-[11px] text-slate-500 font-medium">© 2026 學思軒 &gt;&lt;&gt; &gt;&lt;&gt; &gt;&lt;&gt; •••本網頁由黃于珊老師與AI協作生成，僅供教學使用。•••&lt;&gt;&lt; &lt;&gt;&lt; &lt;&gt;&lt;</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Invisible Audio Element -->
+  <audio id="audioPlayer" preload="auto"></audio>
+
+  <!-- ==================== CLIENT LOGIC SCRIPT ==================== -->
+  <script>
+    // All Songs Data
+    const songsData = [{"id": "pastoral-song", "title": "田園之歌", "artist": "費玉清", "lyricist": "陸麗", "composer": "姚敏", "year": "1978", "album": "白雲 / 鄉村情歌", "tag": "田園風光・悠然自得", "order": "第一曲", "sheet": "好歌學習單 第25頁", "audio": "media/pastoral-song.mp3", "video": null, "bgGradient": "from-emerald-600 via-teal-700 to-slate-900", "lightBg": "bg-emerald-50/70 border-emerald-200", "intro": "由陸麗作詞、姚敏作曲，費玉清以清澈典雅的嗓音唱出農村雨後的自然與勞動景致。「雨後青天白雲飄」、「陌上村姑鋤野草」、「菜花泛金潮」、「田裡老農割早稻」，將鄉村的生機與祥和展現得淋漓盡致。歌者發出「我願長留在農村的懷抱，這裡絕沒有都市的煩擾」之深切感嘆，深刻呼應陳冠學《田園之秋選》中對於大自然生機變化的細膩觀察，以及遠離塵囂、寄情於純樸田園的自得心境。", "keySentence": "我願長留在農村的懷抱 這裡絕没有都市的煩擾", "lyrics": [[{"t": "看雨後青天"}, {"b": "白雲", "h": "2字"}, {"t": "飄 山中鳥啼曉  看"}, {"b": "陌上", "h": "2字"}, {"t": "村姑鋤野草 嘴邊帶着笑"}], [{"t": "看園裡菜花泛金潮 枝頭蟬聲噪  看田裡老農割早稻 揮汗捶著腰"}], [{"type": "space"}], [{"t": "我願長留在"}, {"b": "農村", "h": "2字"}, {"t": "的懷抱  這裡絕没有"}, {"b": "都市", "h": "2字"}, {"t": "的煩擾"}], [{"t": "大樹下"}, {"b": "乘涼", "h": "2字"}, {"t": "把扇摇 堤上牛"}, {"b": "睡覺", "h": "2字"}, {"t": "  看廣場"}, {"b": "牧童", "h": "2字"}, {"t": "群嬉鬧 炊煙繞"}, {"b": "樹梢", "h": "2字"}]]}, {"id": "autumn-tree", "title": "我是一棵秋天的樹", "artist": "張雨生／吳青峰", "lyricist": "許常德", "composer": "陳志遠", "year": "1992／2023", "album": "大海 / 經典名曲", "tag": "秋意哲思・安然自處", "order": "第二曲", "sheet": "好歌學習單 第26頁", "audio": "media/autumn-tree.mp3", "video": null, "bgGradient": "from-amber-600 via-orange-600 to-stone-900", "lightBg": "bg-amber-50/70 border-amber-200", "intro": "由許常德作詞、陳志遠作曲，張雨生原唱、吳青峰深情演繹。歌曲以第一人稱自況為一棵秋天的樹，「稀少的葉片顯得有些孤獨」、「枯瘦的枝幹少有人來停駐」，然而面對世事匆促與冷暖變遷，秋樹依然「安安靜靜守著小小疆土」、「很有耐心不與命運追逐」，展現出「因為最美的在心，不在遠處」的超然豁達。深刻呼應《田園之秋選》在歷經西北雨滂沱洗禮後，心靈回歸澄澈、與天地自然安然共處的從容境界。", "keySentence": "因為最美的在心 不在遠處", "lyrics": [[{"t": "我是一棵秋天的樹  稀少的葉片顯得有些"}, {"b": "孤獨", "h": "2字"}], [{"t": "偶爾"}, {"b": "燕子", "h": "2字"}, {"t": "會飛到我的肩上  用歌聲描述這世界的"}, {"b": "匆促", "h": "2字"}], [{"type": "space"}], [{"t": "我是一棵秋天的樹  枯瘦的枝幹少有人來"}, {"b": "停駐", "h": "2字"}], [{"t": "曾有對戀人在我胸膛"}, {"b": "刻字", "h": "2字"}, {"t": "  我彎不下腰 無法看清楚"}], [{"type": "space"}], [{"t": "我是一棵秋天的樹  時時仰望天等待"}, {"b": "春風", "h": "2字"}, {"t": "吹拂"}], [{"t": "但是"}, {"b": "季節", "h": "2字"}, {"t": "不曾為我趕路  我很有耐心不與命運"}, {"b": "追逐", "h": "2字"}], [{"type": "space"}], [{"t": "我是一棵秋天的樹  安安靜靜"}, {"b": "守著", "h": "2字"}, {"t": "小小疆土"}], [{"t": "眼前的繁華我從不"}, {"b": "羨慕", "h": "2字"}, {"t": "  因為最美的在心 不在遠處"}], [{"type": "space"}], [{"t": "我是一棵秋天的樹"}]]}, {"id": "northwest-rain", "title": "西北雨(台灣童謠)", "artist": "台語囝仔歌", "lyricist": "葉明龍", "composer": "黃敏", "year": "1962", "album": "台灣鄉土童謠集", "tag": "鄉土童謠・驟雨生機", "order": "第三曲", "sheet": "好歌學習單 第27頁", "audio": "media/northwest-rain.mp3", "video": "media/northwest-rain.mp4", "bgGradient": "from-sky-700 via-blue-800 to-slate-900", "lightBg": "bg-sky-50/70 border-sky-200", "intro": "台灣家喻戶曉的經典鄉土童謠。全曲以節奏輕快、生動活潑的閩南語唸謠，描摹夏日午後西北雨傾盆而下的逗趣景致。第一段將台灣水澤常見動物擬人化：鯽仔魚娶親、鮕鮐兄打鑼鼓、土虱嫂當媒人婆、火金姑（螢火蟲）在昏暗雨幕中提燈照路；第二段則寫白鷺鷥冒雨翻山越嶺、跌倒後求助土地公婆，為故事帶來安定人心的力量。完美呼應陳冠學《田園之秋選》中描寫夏日午後西北雨「雷聲隆隆，電光閃閃，大雨滂沱」之後，大地被洗滌一新、處處充滿蓬勃生機的壯闊奇景。", "keySentence": "西北雨，直直落", "lyrics": [[{"t": "西北雨，直直落，鯽仔魚，欲娶某，鮕代兄，打鑼鼓，媒人婆仔，土虱嫂，"}], [{"t": "日頭暗，尋無路，趕緊來，火金姑，做好心，來照路，西北雨，直直落，"}], [{"type": "space"}], [{"t": "西北雨，直直落，白鷺鷺，來趕路，翻山嶺，過溪河，找無巢，跌一倒，"}], [{"t": "日頭暗，欲怎好，土地公，土地婆，做好心，來帶路，西北雨，直直落。"}]]}, {"id": "dark-sky", "title": "天黑黑(台灣童謠)", "artist": "台語囝仔歌 / 林福裕", "lyricist": "林福裕", "composer": "林福裕", "year": "1965", "album": "幸福合唱團 / 台灣民謠", "tag": "民間詼諧・甘霖將至", "order": "第四曲", "sheet": "好歌學習單 第28頁", "audio": "media/dark-sky.mp3", "video": "media/dark-sky.mp4", "bgGradient": "from-slate-700 via-zinc-800 to-neutral-900", "lightBg": "bg-slate-50/70 border-slate-200", "intro": "台灣民間流傳最廣的鄉土童謠之一，由林福裕先生依據傳統唸謠整理譜寫成曲。全曲以「天黑黑要落雨」為起興，描述老阿公在暴雨將至前荷鋤掘芋，意外挖到泥鰍，回家後卻與阿嬤為了泥鰍究竟要「煮鹽（煮鹹）」還是「煮淡」爭論不休、大打出手弄破鍋鼎的日常趣事，充滿詼諧幽默的鄉土人情味。深刻呼應《田園之秋選》中「烏雲蔽日、天地為之變色」的大自然驟變，以及台灣農民面對風雨生活時的豁達、勤勞與樂觀。", "keySentence": "都真正趣眛", "lyrics": [[{"t": "天黑黑要落雨"}], [{"t": "阿公仔舉鋤頭要掘芋"}], [{"t": "掘啊掘掘啊掘 掘著一尾旋餾鼓"}], [{"t": "依呀嘿都真正趣眛"}], [{"type": "space"}], [{"t": "阿公仔要煮鹽"}], [{"t": "阿媽要煮淡"}], [{"t": "兩個相打弄破鼎"}], [{"t": "依呀嘿都 嚨噹欽咚鏘 哇哈哈"}]]}];
+    let currentSongIndex = 0;
+    let isPlaying = false;
+    let isTeacherMode = false;
+    let isVideoMode = false;
+    let isKeySentenceRevealed = false;
+    let revealedBlanks = new Set(); // Track revealed blank IDs
+
+    // Initial song config
+    const initialSongId = "northwest-rain";
+    
+    // URL Hash or query support
+    const hashSong = window.location.hash.replace('#', '') || (new URLSearchParams(window.location.search)).get('song');
+    const targetSongId = hashSong || initialSongId;
+    const foundIdx = songsData.findIndex(s => s.id === targetSongId);
+    if (foundIdx !== -1) currentSongIndex = foundIdx;
+
+    // DOM Elements
+    const audio = document.getElementById('audioPlayer');
+    const video = document.getElementById('videoPlayer');
+    const videoContainer = document.getElementById('videoContainer');
+    const vinylContainer = document.getElementById('vinylContainer');
+    const videoToggleBtn = document.getElementById('videoToggleBtn');
+    const videoToggleText = document.getElementById('videoToggleText');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const playIcon = document.getElementById('playIcon');
+    const vinylDisc = document.getElementById('vinylDisc');
+    const vinylArm = document.getElementById('vinylArm');
+    const progressBar = document.getElementById('progressBar');
+    const progressHandle = document.getElementById('progressHandle');
+    const currentTimeEl = document.getElementById('currentTime');
+    const totalDurationEl = document.getElementById('totalDuration');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeIcon = document.getElementById('volumeIcon');
+
+    // Initialize App
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTabs();
+      renderSongListMenu();
+      loadSong(currentSongIndex, false); // Do not auto-play initially
+      updateKeySentenceUI();
+      setupAudioListeners();
+      setupVideoListeners();
+    });
+
+    // Listen to hash changes for deep linking
+    window.addEventListener('hashchange', () => {
+      const newHash = window.location.hash.replace('#', '');
+      const idx = songsData.findIndex(s => s.id === newHash);
+      if (idx !== -1 && idx !== currentSongIndex) {
+        switchSong(idx, false);
+      }
+    });
+
+    // Render Navigation Tabs in Banner
+    function renderTabs() {
+      const container = document.getElementById('songTabsContainer');
+      container.innerHTML = '';
+
+      songsData.forEach((song, idx) => {
+        const isActive = (idx === currentSongIndex);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => switchSong(idx, false);
+        btn.className = `px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer ${
+          isActive 
+            ? 'bg-white text-orange-950 shadow-md ring-2 ring-orange-300' 
+            : 'bg-white/10 hover:bg-white/20 text-white/90 border border-white/10'
+        }`;
+
+        btn.innerHTML = `
+          <span class="w-1.5 h-1.5 rounded-full ${isActive ? 'bg-orange-600 animate-pulse' : 'bg-white/40'}"></span>
+          <span>${song.title}</span>
+          <span class="text-[10px] opacity-75 font-normal">(${song.artist})</span>
+        `;
+        container.appendChild(btn);
+      });
+    }
+
+    // Render Mini Playlist Card
+    function renderSongListMenu() {
+      const container = document.getElementById('songListMenu');
+      container.innerHTML = '';
+
+      songsData.forEach((song, idx) => {
+        const isCurrent = (idx === currentSongIndex);
+        const isThisPlaying = (isCurrent && isPlaying);
+        const item = document.createElement('div');
+        item.onclick = () => switchSong(idx, false);
+        item.className = `group p-2 rounded-lg text-xs flex items-center justify-between cursor-pointer transition-all ${
+          isCurrent 
+            ? 'bg-emerald-50 text-emerald-900 font-bold border border-emerald-200 shadow-2xs' 
+            : 'hover:bg-slate-50 text-slate-700'
+        }`;
+
+        item.innerHTML = `
+          <div class="flex items-center gap-2 min-w-0">
+            <!-- Dedicated Play / Pause Button in List -->
+            <button onclick="event.stopPropagation(); toggleListPlay(${idx})" 
+                    class="w-6 h-6 rounded-full flex items-center justify-center transition-all shrink-0 cursor-pointer ${
+                      isThisPlaying 
+                        ? 'bg-emerald-600 text-white shadow-xs' 
+                        : isCurrent 
+                          ? 'bg-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white' 
+                          : 'bg-slate-100 text-slate-500 hover:bg-emerald-600 hover:text-white group-hover:bg-emerald-100 group-hover:text-emerald-700'
+                    }" 
+                    title="${isThisPlaying ? '暫停播放' : '立即播放《' + song.title + '》'}">
+              <i class="fa-solid ${isThisPlaying ? 'fa-pause text-[10px]' : 'fa-play text-[9px] ml-0.5'}"></i>
+            </button>
+            <span class="w-4 text-center font-mono text-[11px] ${isCurrent ? 'text-emerald-600 font-bold' : 'text-slate-400'}">${idx + 1}</span>
+            <span class="truncate">${song.title}</span>
+          </div>
+          <div class="flex items-center gap-2 text-[10px] shrink-0">
+            <span class="text-slate-400">${song.artist}</span>
+            ${song.video ? '<i class="fa-solid fa-video text-rose-500" title="具備MV"></i>' : ''}
+          </div>
+        `;
+        container.appendChild(item);
+      });
+      updateCompletionProgress();
+    }
+
+    // Switch Song (defaults to autoPlay = false)
+    function switchSong(index, autoPlay = false) {
+      if (index < 0 || index >= songsData.length) return;
+      currentSongIndex = index;
+      isKeySentenceRevealed = false; // 切換曲目時解答自動恢復隱藏
+      
+      // Update URL hash without scroll
+      if (history.replaceState) {
+        history.replaceState(null, null, '#' + songsData[currentSongIndex].id);
+      }
+
+      // Reset video mode if switching
+      if (isVideoMode) {
+        isVideoMode = false;
+        video.pause();
+        videoContainer.classList.add('hidden');
+        vinylContainer.classList.remove('hidden');
+        videoToggleText.textContent = "MV";
+      }
+
+      renderTabs();
+      renderSongListMenu();
+      loadSong(currentSongIndex, autoPlay);
+      updateKeySentenceUI();
+    }
+
+    // Toggle Play/Pause directly from mini list
+    function toggleListPlay(idx) {
+      if (currentSongIndex === idx) {
+        togglePlayPause();
+      } else {
+        switchSong(idx, true);
+      }
+    }
+
+    // Load Song Data into Player and Worksheet
+    function loadSong(index, autoPlay = false) {
+      const song = songsData[index];
+      if (!song) return;
+
+      // Update Audio Source
+      audio.src = song.audio;
+      audio.load();
+
+      // Video Setup
+      if (song.video) {
+        video.src = song.video;
+        video.load();
+        videoToggleBtn.classList.remove('hidden');
+      } else {
+        videoToggleBtn.classList.add('hidden');
+      }
+
+      // Update Player UI
+      document.getElementById('playerSongTitle').textContent = song.title;
+      document.getElementById('vinylSongTitle').textContent = song.title;
+      document.getElementById('playerArtist').textContent = `演唱：${song.artist}・${song.year}`;
+      document.getElementById('playerOrderBadge').textContent = song.order;
+      document.getElementById('playerTagBadge').textContent = song.tag;
+      document.getElementById('playerAlbum').textContent = song.album;
+      document.getElementById('playerSheetRef').innerHTML = `<i class="fa-regular fa-file-lines text-emerald-600"></i> ${song.sheet}`;
+      document.getElementById('songIntroText').textContent = song.intro;
+      document.getElementById('metaLyricist').textContent = `作詞：${song.lyricist}`;
+      document.getElementById('metaComposer').textContent = `作曲：${song.composer}`;
+      document.getElementById('metaArtist').textContent = `演唱：${song.artist}`;
+      document.getElementById('metaYear').textContent = `年份：${song.year}`;
+
+      // Update Worksheet Header
+      document.getElementById('sheetTitle').textContent = `【${song.title}】`;
+      document.getElementById('sheetCredits').textContent = `作詞：${song.lyricist}  作曲：${song.composer}  演唱：${song.artist}  ${song.year}`;
+
+      // Render Lyrics
+      renderLyrics(song);
+
+      // Reset playback state
+      isPlaying = false;
+      updatePlayButtonUI();
+      progressBar.style.width = '0%';
+      progressHandle.style.left = '0%';
+      currentTimeEl.textContent = '00:00';
+
+      if (autoPlay) {
+        playMedia();
+      }
+    }
+
+    // Render Lyrics with Blank Boxes
+    function renderLyrics(song) {
+      const container = document.getElementById('lyricsContainer');
+      container.innerHTML = '';
+      revealedBlanks.clear();
+
+      song.lyrics.forEach((line, lineIdx) => {
+        // Space line
+        if (line.length === 1 && line[0].type === 'space') {
+          const spaceDiv = document.createElement('div');
+          spaceDiv.className = 'h-4';
+          container.appendChild(spaceDiv);
+          return;
+        }
+
+        const lineDiv = document.createElement('div');
+        lineDiv.className = 'py-0.5 flex flex-wrap items-center leading-normal';
+
+        line.forEach((seg, segIdx) => {
+          if (seg.t) {
+            const span = document.createElement('span');
+            span.textContent = seg.t;
+            lineDiv.appendChild(span);
+          } else if (seg.b) {
+            const blankId = `blank-${lineIdx}-${segIdx}`;
+            const box = document.createElement('span');
+            box.id = blankId;
+            box.className = 'blank-box';
+            box.setAttribute('role', 'button');
+            box.setAttribute('tabindex', '0');
+            box.setAttribute('title', '點擊翻開解答');
+            box.onclick = () => toggleBlank(blankId, seg.b, seg.h);
+
+            // Check if already in teacher mode
+            if (isTeacherMode) {
+              box.classList.add('revealed');
+              box.innerHTML = `<span class="font-handwriting text-rose-600 font-bold text-lg revealed-text">${seg.b}</span>`;
+              revealedBlanks.add(blankId);
+            } else {
+              box.innerHTML = `<span class="text-xs text-slate-400 font-mono tracking-tighter">[ ${seg.h || '填空'} ]</span>`;
+            }
+
+            lineDiv.appendChild(box);
+          }
+        });
+
+        container.appendChild(lineDiv);
+      });
+
+      updateCompletionProgress();
+    }
+
+    // Toggle Single Blank
+    function toggleBlank(id, answer, hint) {
+      const box = document.getElementById(id);
+      if (!box) return;
+
+      if (revealedBlanks.has(id)) {
+        revealedBlanks.delete(id);
+        box.classList.remove('revealed');
+        box.innerHTML = `<span class="text-xs text-slate-400 font-mono tracking-tighter">[ ${hint || '填空'} ]</span>`;
+      } else {
+        revealedBlanks.add(id);
+        box.classList.add('revealed');
+        box.innerHTML = `<span class="font-handwriting text-rose-600 font-bold text-lg revealed-text animate-in zoom-in-95 duration-150">${answer}</span>`;
+      }
+      updateCompletionProgress();
+    }
+
+    // One-click Reveal / Reset All Blanks
+    function toggleAllBlanks() {
+      isTeacherMode = !isTeacherMode;
+      const btn = document.getElementById('toggleAllBtn');
+      const btnText = document.getElementById('toggleAllBtnText');
+      const modeLabel = document.getElementById('currentModeLabel');
+
+      if (isTeacherMode) {
+        btn.classList.replace('bg-rose-50', 'bg-rose-600');
+        btn.classList.replace('text-rose-700', 'text-white');
+        btnText.textContent = "切換回學生版";
+        if (modeLabel) modeLabel.textContent = "教師教學揭曉模式";
+        isKeySentenceRevealed = true;
+      } else {
+        btn.classList.replace('bg-rose-600', 'bg-rose-50');
+        btn.classList.replace('text-white', 'text-rose-700');
+        btnText.textContent = "一鍵揭曉教師版";
+        if (modeLabel) modeLabel.textContent = "學生自修填空模式";
+        isKeySentenceRevealed = false;
+      }
+
+      renderLyrics(songsData[currentSongIndex]);
+      updateKeySentenceUI();
+    }
+
+    // Reset Blanks on Page
+    function resetAllBlanks() {
+      isTeacherMode = false;
+      isKeySentenceRevealed = false;
+      const btn = document.getElementById('toggleAllBtn');
+      const btnText = document.getElementById('toggleAllBtnText');
+      const modeLabel = document.getElementById('currentModeLabel');
+
+      btn.classList.replace('bg-rose-600', 'bg-rose-50');
+      btn.classList.replace('text-white', 'text-rose-700');
+      btnText.textContent = "一鍵揭曉教師版";
+      if (modeLabel) modeLabel.textContent = "學生自修填空模式";
+
+      renderLyrics(songsData[currentSongIndex]);
+      updateKeySentenceUI();
+    }
+
+    // Toggle Key Sentence Answer Display
+    function toggleKeySentenceAnswer() {
+      isKeySentenceRevealed = !isKeySentenceRevealed;
+      updateKeySentenceUI();
+    }
+
+    function updateKeySentenceUI() {
+      const box = document.getElementById('keySentenceAnswerBox');
+      const textEl = document.getElementById('keySentenceAnswerText');
+      const btnText = document.getElementById('keyAnsText');
+      const btnIcon = document.getElementById('keyAnsIcon');
+      const currentSong = songsData[currentSongIndex];
+
+      if (textEl && currentSong) {
+        textEl.textContent = currentSong.keySentence || '';
+      }
+
+      if (isTeacherMode || isKeySentenceRevealed) {
+        box.classList.remove('hidden');
+        btnText.textContent = "隱藏關鍵句解答";
+        btnIcon.className = "fa-solid fa-eye-slash text-amber-700";
+      } else {
+        box.classList.add('hidden');
+        btnText.textContent = "查看關鍵句解答";
+        btnIcon.className = "fa-regular fa-lightbulb text-amber-600";
+      }
+    }
+
+    // Update Progress Indicator
+    function updateCompletionProgress() {
+      const allBoxes = document.querySelectorAll('.blank-box');
+      const overallEl = document.getElementById('overallCompletion');
+      if (allBoxes.length === 0) {
+        if (overallEl) overallEl.textContent = `填空: 免填篇章`;
+      } else {
+        const revealed = document.querySelectorAll('.blank-box.revealed').length;
+        if (overallEl) overallEl.textContent = `填空: ${revealed}/${allBoxes.length}`;
+      }
+    }
+
+    // Audio Playback Listeners
+    function setupAudioListeners() {
+      audio.addEventListener('timeupdate', () => {
+        if (!audio.duration) return;
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = percent + '%';
+        progressHandle.style.left = percent + '%';
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+      });
+
+      audio.addEventListener('loadedmetadata', () => {
+        totalDurationEl.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener('ended', () => {
+        isPlaying = false;
+        updatePlayButtonUI();
+        nextSong();
+      });
+    }
+
+    // Video Playback Listeners
+    function setupVideoListeners() {
+      if (!video) return;
+      video.addEventListener('timeupdate', () => {
+        if (!isVideoMode || !video.duration) return;
+        const percent = (video.currentTime / video.duration) * 100;
+        progressBar.style.width = percent + '%';
+        progressHandle.style.left = percent + '%';
+        currentTimeEl.textContent = formatTime(video.currentTime);
+      });
+
+      video.addEventListener('loadedmetadata', () => {
+        if (isVideoMode) {
+          totalDurationEl.textContent = formatTime(video.duration);
+        }
+      });
+
+      video.addEventListener('play', () => {
+        isPlaying = true;
+        updatePlayButtonUI();
+      });
+
+      video.addEventListener('pause', () => {
+        isPlaying = false;
+        updatePlayButtonUI();
+      });
+
+      video.addEventListener('ended', () => {
+        isPlaying = false;
+        updatePlayButtonUI();
+      });
+    }
+
+    // Toggle Play/Pause
+    function togglePlayPause() {
+      if (isPlaying) {
+        pauseMedia();
+      } else {
+        playMedia();
+      }
+    }
+
+    function playMedia() {
+      if (isVideoMode) {
+        video.play().then(() => {
+          isPlaying = true;
+          updatePlayButtonUI();
+        }).catch(err => console.log('Video play error:', err));
+      } else {
+        audio.play().then(() => {
+          isPlaying = true;
+          updatePlayButtonUI();
+        }).catch(err => console.log('Audio play error:', err));
+      }
+    }
+
+    function pauseMedia() {
+      if (isVideoMode) {
+        video.pause();
+      } else {
+        audio.pause();
+      }
+      isPlaying = false;
+      updatePlayButtonUI();
+    }
+
+    // Toggle Video vs Audio Mode
+    function toggleVideoMode() {
+      const song = songsData[currentSongIndex];
+      if (!song.video) return;
+
+      isVideoMode = !isVideoMode;
+      if (isVideoMode) {
+        // Switch to Video
+        audio.pause();
+        videoContainer.classList.remove('hidden');
+        vinylContainer.classList.add('hidden');
+        videoToggleText.textContent = "黑膠";
+        video.currentTime = audio.currentTime;
+        if (isPlaying) video.play();
+      } else {
+        // Switch to Vinyl Audio
+        video.pause();
+        videoContainer.classList.add('hidden');
+        vinylContainer.classList.remove('hidden');
+        videoToggleText.textContent = "MV";
+        audio.currentTime = video.currentTime;
+        if (isPlaying) audio.play();
+      }
+    }
+
+    function updatePlayButtonUI() {
+      if (isPlaying) {
+        playIcon.className = "fa-solid fa-pause";
+        vinylArm.classList.add('playing');
+        vinylDisc.classList.add('animate-spin-slow');
+      } else {
+        playIcon.className = "fa-solid fa-play ml-0.5";
+        vinylArm.classList.remove('playing');
+        vinylDisc.classList.remove('animate-spin-slow');
+      }
+      renderSongListMenu();
+    }
+
+    // Next / Prev Song
+    function nextSong() {
+      let nextIdx = (currentSongIndex + 1) % songsData.length;
+      switchSong(nextIdx, isPlaying);
+    }
+
+    function prevSong() {
+      let prevIdx = (currentSongIndex - 1 + songsData.length) % songsData.length;
+      switchSong(prevIdx, isPlaying);
+    }
+
+    // Skip time (+/- 5 seconds)
+    function skipTime(seconds) {
+      const media = isVideoMode ? video : audio;
+      if (!media.duration) return;
+      media.currentTime = Math.min(Math.max(media.currentTime + seconds, 0), media.duration);
+    }
+
+    // Seek Audio/Video on progress bar click
+    function seekAudio(e) {
+      const media = isVideoMode ? video : audio;
+      if (!media.duration) return;
+      const rect = progressBarContainer.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const fraction = Math.max(0, Math.min(1, clickX / rect.width));
+      media.currentTime = fraction * media.duration;
+    }
+
+    // Format seconds to mm:ss
+    function formatTime(sec) {
+      if (isNaN(sec)) return '00:00';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    // Set Speed
+    function setSpeed(val) {
+      audio.playbackRate = val;
+      if (video) video.playbackRate = val;
+      document.querySelectorAll('.speed-btn').forEach(btn => {
+        btn.className = "speed-btn px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer";
+      });
+      const targetBtn = document.getElementById(`speed-${val}`);
+      if (targetBtn) {
+        targetBtn.className = "speed-btn px-2 py-0.5 rounded bg-emerald-600 text-white font-bold transition-colors cursor-pointer";
+      }
+    }
+
+    // Volume Control
+    function changeVolume(val) {
+      audio.volume = val;
+      if (video) video.volume = val;
+      if (val == 0) {
+        volumeIcon.className = "fa-solid fa-volume-xmark text-xs";
+      } else if (val < 0.5) {
+        volumeIcon.className = "fa-solid fa-volume-low text-xs";
+      } else {
+        volumeIcon.className = "fa-solid fa-volume-high text-xs";
+      }
+    }
+
+    function toggleMute() {
+      const media = isVideoMode ? video : audio;
+      if (media.volume > 0) {
+        media.dataset.prevVolume = media.volume;
+        changeVolume(0);
+        volumeSlider.value = 0;
+      } else {
+        const prev = media.dataset.prevVolume || 0.8;
+        changeVolume(prev);
+        volumeSlider.value = prev;
+      }
+    }
+
+    // Emotion Chips Toggle
+    function toggleEmotion(btn, emotion) {
+      btn.classList.toggle('ring-2');
+      btn.classList.toggle('ring-emerald-500');
+      btn.classList.toggle('bg-emerald-50');
+      btn.classList.toggle('font-bold');
+    }
+
+    // Keyboard Shortcuts (Space to play/pause)
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        togglePlayPause();
+      }
+    });
+  </script>
+
+  <!-- ==================== WORKSHEET DOWNLOAD & PREVIEW MODAL ==================== -->
+  <div id="worksheetModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-7 space-y-4 max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl relative animate-in fade-in duration-200 text-left">
+      <!-- Close Button -->
+      <button onclick="closeWorksheetModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-sm transition-colors cursor-pointer" title="關閉視窗">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 pr-8">
+        <div id="wsModalIconBox" class="w-12 h-12 rounded-2xl flex items-center justify-center text-xl shrink-0 shadow-xs">
+          <i id="wsModalIcon" class="fa-solid fa-file-pen"></i>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <span id="wsModalBadge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold">單元</span>
+            <span id="wsModalTypeTag" class="px-2 py-0.5 rounded-full text-[10px] font-bold">學用學習單</span>
+          </div>
+          <h3 id="wsModalTitle" class="text-lg sm:text-xl font-serif font-bold text-slate-900 mt-1 truncate">學習單線上預覽與下載</h3>
+        </div>
+      </div>
+
+      <!-- Hint banner -->
+      <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-center justify-between gap-2">
+        <span class="flex items-center gap-1.5">
+          <i class="fa-regular fa-lightbulb text-amber-500"></i>
+          點擊「線上預覽」另開分頁檢視，點擊「下載」儲存 PDF。
+        </span>
+        <span class="text-[10px] text-slate-400 font-mono shrink-0">PDF 格式</span>
+      </div>
+
+      <!-- Worksheets Container -->
+      <div id="wsModalList" class="space-y-2.5">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-[11px] text-slate-400">學思軒・閱思龍門專用教材</span>
+        <button onclick="closeWorksheetModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors cursor-pointer">
+          關閉視窗
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Worksheet Modal System
+    const unitWorksheetMeta = {"unitName": "八上國文・L01 田園之秋選", "badgeClass": "bg-emerald-100 text-emerald-800", "songs": [{"id": 1, "title": "田園之歌", "artist": "費玉清", "student": "worksheet-pastoral-song.pdf", "teacher": "worksheet-pastoral-song.pdf"}, {"id": 2, "title": "我是一棵秋天的樹", "artist": "張雨生／吳青峰", "student": "worksheet-autumn-tree.pdf", "teacher": "worksheet-autumn-tree.pdf"}, {"id": 3, "title": "西北雨(台灣童謠)", "artist": "台語囝仔歌", "student": "worksheet-northwest-rain.pdf", "teacher": "worksheet-northwest-rain.pdf"}, {"id": 4, "title": "天黑黑(台灣童謠)", "artist": "台語囝仔歌", "student": "worksheet-dark-sky.pdf", "teacher": "worksheet-dark-sky.pdf"}]};
+
+    function openWorksheetModal(type) {
+      const isStudent = (type === 'student');
+      const typeText = isStudent ? '學用學習單' : '教用學習單';
+      const iconClass = isStudent ? 'fa-solid fa-file-pen' : 'fa-solid fa-graduation-cap';
+      const iconBoxBg = isStudent ? 'bg-amber-100 text-amber-800' : 'bg-rose-100 text-rose-800';
+      const typeTagBg = isStudent ? 'bg-amber-500 text-white' : 'bg-slate-800 text-white';
+
+      document.getElementById('wsModalBadge').textContent = unitWorksheetMeta.unitName;
+      document.getElementById('wsModalBadge').className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold ' + unitWorksheetMeta.badgeClass;
+
+      document.getElementById('wsModalTypeTag').textContent = typeText;
+      document.getElementById('wsModalTypeTag').className = 'px-2 py-0.5 rounded-full text-[10px] font-bold ' + typeTagBg;
+
+      document.getElementById('wsModalTitle').textContent = unitWorksheetMeta.unitName + '・' + typeText;
+
+      const iconBox = document.getElementById('wsModalIconBox');
+      iconBox.className = 'w-12 h-12 rounded-2xl flex items-center justify-center text-xl shrink-0 shadow-xs ' + iconBoxBg;
+      document.getElementById('wsModalIcon').className = iconClass;
+
+      let listHtml = '';
+
+      // 單曲個別學習單列表
+      listHtml += '<div class="pt-1">' +
+        '<div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">' +
+          '<span>單曲個別學習單 (' + unitWorksheetMeta.songs.length + ' 首)</span>' +
+          '<span class="text-slate-400 font-normal text-[10px]">可獨立預覽或下載</span>' +
+        '</div>' +
+        '<div class="space-y-1.5">';
+
+      unitWorksheetMeta.songs.forEach(function(song, idx) {
+        const fileUrl = song[type];
+        const isCurrent = (typeof currentSongIndex !== 'undefined' && idx === currentSongIndex);
+        const cardBg = isCurrent ? 'bg-emerald-50/70 border-emerald-300 ring-1 ring-emerald-300' : 'bg-slate-50 hover:bg-slate-100/80 border-slate-200';
+        const numBg = isCurrent ? 'bg-emerald-600 text-white' : 'bg-white text-slate-700 border border-slate-200';
+        const currentBadge = isCurrent ? '<span class="px-1.5 py-0.2 text-[9px] font-bold bg-emerald-200 text-emerald-900 rounded">目前播放</span>' : '';
+
+        listHtml += '<div class="p-2.5 rounded-xl ' + cardBg + ' border transition-all flex items-center justify-between gap-2">' +
+          '<div class="flex items-center gap-2.5 min-w-0">' +
+            '<span class="w-5 h-5 rounded-full ' + numBg + ' text-[10px] font-bold flex items-center justify-center shrink-0">' + song.id + '</span>' +
+            '<div class="min-w-0">' +
+              '<div class="flex items-center gap-1.5">' +
+                '<span class="font-bold text-slate-800 text-xs truncate">' + song.title + '</span>' +
+                currentBadge +
+              '</div>' +
+              '<div class="text-[10px] text-slate-400 truncate">' + song.artist + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="flex items-center gap-1.5 shrink-0">' +
+            '<a href="' + fileUrl + '" target="_blank" rel="noopener noreferrer" class="py-1 px-2.5 rounded-lg bg-white hover:bg-slate-200/70 border border-slate-200 text-slate-700 font-medium text-xs flex items-center gap-1 transition-all" title="線上預覽">' +
+              '<i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>' +
+              '<span>預覽</span>' +
+            '</a>' +
+            '<a href="' + fileUrl + '" download class="py-1 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-900 text-white font-medium text-xs flex items-center gap-1 transition-all" title="下載 PDF">' +
+              '<i class="fa-solid fa-download text-[10px]"></i>' +
+              '<span>下載</span>' +
+            '</a>' +
+          '</div>' +
+        '</div>';
+      });
+
+      listHtml += '</div></div>';
+
+      document.getElementById('wsModalList').innerHTML = listHtml;
+
+      const modal = document.getElementById('worksheetModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeWorksheetModal() {
+      const modal = document.getElementById('worksheetModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    window.addEventListener('click', function(e) {
+      const wsModal = document.getElementById('worksheetModal');
+      if (e.target === wsModal) {
+        closeWorksheetModal();
+      }
+    });
+
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeWorksheetModal();
+      }
+    });
+  </script>
+</body>
+</html>
